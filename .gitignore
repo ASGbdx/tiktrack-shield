@@ -1,0 +1,46 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.env/
+*.egg-info/
+.eggs/
+.mypy_cache/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.nuxt/
+dist/
+*.tsbuildinfo
+
+# IDE & OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Logs & build
+*.log
+logs/
+build/
+
+# Docker
+.docker/
+
+# Local / ephemeral
+*.local
+.cache/
