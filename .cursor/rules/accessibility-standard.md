@@ -17,7 +17,7 @@ Garantir que l’interface TikTrack Shield est utilisable par tous (clavier, lec
 3. **Focus & clavier** : tous les contrôles interactifs accessibles au clavier ; outline de focus visible (tokens design).
 4. **Sémantique** : balises appropriées (titres, landmarks, labels), rôles ARIA si nécessaire ; formulaires avec labels associés et messages d’erreur annonçables.
 5. **Motion** : respecter `prefers-reduced-motion` ; pas d’animation indispensable à la compréhension sans alternative.
-6. **Design tokens** : couleurs et espacements issus de `DESIGN_TOKENS.json` ; radius ≤ `radius.md` (déjà contraint par la règle UX).
+6. **Design tokens** : couleurs et espacements issus de `DESIGN_TOKENS.json` ; radius ≤ token `radius.md` (valeur max., aligné règle UX).
 
 ## Required artifacts
 - Pour les composants UI : mention des tokens utilisés (couleur, contraste, focus).

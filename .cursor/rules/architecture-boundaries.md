@@ -3,7 +3,7 @@ name: "Rule — Architecture Boundaries"
 version: "1.0"
 product: "TikTrack Shield"
 updated: "2026-03-11"
-summary: "Clear responsibility per layer to prevent leakage of concerns between frontend/back/backend/infra."
+summary: "Clear responsibility per layer to prevent leakage of concerns between frontend/backend/infra."
 ---
 
 # Architecture Boundaries — Quick Rule

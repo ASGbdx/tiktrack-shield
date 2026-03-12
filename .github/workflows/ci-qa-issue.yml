@@ -1,0 +1,114 @@
+name: CI - Tests & QA Issue Logger
+
+# Trigger: runs when the separate test workflow finishes.
+# Prerequisite: a workflow named "CI - Unit & Integration Tests" must exist in this repo
+# (or in the same org/repo where this file is used). That workflow should upload test
+# artifacts so this job can download and attach them to GitHub issues.
+# Adjust the workflow name below if your test workflow has a different name.
+on:
+  workflow_run:
+    workflows: ["CI - Unit & Integration Tests"]
+    types: [completed]
+
+permissions:
+  contents: read
+  issues: write
+  checks: read
+
+jobs:
+  collect-artifacts-and-log-issues:
+    runs-on: ubuntu-latest
+    # Only run when the referenced workflow finished with failure or neutral (adjust as desired)
+    if: ${{ github.event.workflow_run.conclusion == 'failure' || github.event.workflow_run.conclusion == 'neutral' }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download workflow run artifacts
+        uses: dawidd6/action-download-artifact@v3
+        with:
+          workflow: "CI - Unit & Integration Tests"
+          run_id: ${{ github.event.workflow_run.id }}
+          path: artifacts/
+
+      - name: Sanitize artifacts (mask potential PII)
+        run: |
+          set -eu
+          mkdir -p artifacts/sanitized
+          # sanitize text files: mask emails and token-like patterns
+          find artifacts -type f \( -name "*.log" -o -name "*.txt" -o -name "*.json" \) -print0 | while IFS= read -r -d '' f; do
+            echo "Sanitizing $f"
+            sed -E 's/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}/[redacted-email]/g' "$f" \
+              | sed -E 's/(token|password|secret)[:=]\s*[A-Za-z0-9_\-+.=\/]+/[redacted]/gi' \
+              > "artifacts/sanitized/$(basename "$f")"
+          done
+          # copy binary artifacts (screenshots/videos) verbatim
+          find artifacts -type f \( -name "*.png" -o -name "*.mp4" -o -name "*.zip" \) -print0 | while IFS= read -r -d '' f; do
+            cp "$f" "artifacts/sanitized/"
+          done
+
+      - name: Create sanitized archive & compute fingerprint
+        id: create_archive
+        run: |
+          set -eu
+          TIMESTAMP=$(date -u +"%Y%m%dT%H%M%SZ")
+          ARCHIVE=qa-artifacts-${TIMESTAMP}.tar.gz
+
+          # create archive from sanitized folder (if empty, create an empty tar)
+          if [ -d artifacts/sanitized ] && [ "$(ls -A artifacts/sanitized)" ]; then
+            tar -czf "$ARCHIVE" -C artifacts/sanitized .
+          else
+            # create an empty tar to keep pipeline stable
+            tar -czf "$ARCHIVE" --files-from /dev/null
+          fi
+
+          # Build a sample excerpt for fingerprinting (first 50 lines of any sanitized log)
+          SAMPLE=""
+          if [ -f artifacts/sanitized/test.log ]; then
+            SAMPLE=$(head -n 50 artifacts/sanitized/test.log | tr -d '\r\n' | tr -s ' ')
+          else
+            # try any .log or .txt as fallback
+            FIRSTLOG=$(find artifacts/sanitized -type f \( -name "*.log" -o -name "*.txt" \) | head -n 1 || true)
+            if [ -n "$FIRSTLOG" ]; then
+              SAMPLE=$(head -n 50 "$FIRSTLOG" | tr -d '\r\n' | tr -s ' ')
+            fi
+          fi
+
+          # Title and normalized string for fingerprint
+          TITLE="QA: CI test failures in $GITHUB_REPOSITORY (workflow: $GITHUB_WORKFLOW)"
+          NORMALIZED="${TITLE}||run:${GITHUB_RUN_ID}||${SAMPLE}"
+          FINGERPRINT=$(printf "%s" "$NORMALIZED" | sha256sum | awk '{print $1}')
+
+          # Export outputs for other steps
+          echo "archive=${ARCHIVE}" >> "$GITHUB_OUTPUT"
+          echo "fingerprint=${FINGERPRINT}" >> "$GITHUB_OUTPUT"
+          echo "title=${TITLE}" >> "$GITHUB_OUTPUT"
+
+      - name: Upload sanitized archive as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: qa-artifacts
+          path: ${{ steps.create_archive.outputs.archive }}
+          retention-days: 7
+
+      - name: Create or update GitHub issue (call skill implementation)
+        env:
+          REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # or use secrets.QA_GITHUB_TOKEN for dedicated bot
+          ARCHIVE: ${{ steps.create_archive.outputs.archive }}
+          FINGERPRINT: ${{ steps.create_archive.outputs.fingerprint }}
+          TITLE: ${{ steps.create_archive.outputs.title }}
+          CI_URL: ${{ github.event.workflow_run.html_url }}
+          RUN_ID: ${{ github.event.workflow_run.id }}
+          PRODUCT_CONTEXT: "TikTrack Shield"
+        run: |
+          set -eu
+          python3 scripts/create_github_issue.py \
+            --repo "$REPO" \
+            --fingerprint "$FINGERPRINT" \
+            --title "$TITLE" \
+            --severity "high" \
+            --description "Automated CI run ($RUN_ID) reported failures. See sanitized artifacts and logs. CI link: $CI_URL" \
+            --artifact "./${ARCHIVE}" \
+            --test-id "ci/${RUN_ID}" \
+            --force "false"

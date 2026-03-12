@@ -25,6 +25,8 @@ Contexte produit, règles, skills et agents pour aligner l’IA sur le projet Ti
 
 ## Skills (skills/)
 
+Les skills sont dans des sous-dossiers : **back-dev/** , **front-dev/** , **devops/** , **product-owner/** , **qa/** (ex. `skills/qa/github-issue-logger.md`), plus quelques skills à la racine de `skills/`.
+
 | Skill | Quand l’utiliser |
 |-------|-------------------|
 | **infra-caddy-snippet** | Nouvelle route / service, review Caddyfile (reverse_proxy, headers, rate limit). |
@@ -47,6 +49,13 @@ Contexte produit, règles, skills et agents pour aligner l’IA sur le projet Ti
 - **devops.md** — Infra (Caddy, Cloudflare, Tailscale), sécurité, CI/CD, pas de code métier.
 - **ux-designer.md** — Tokens, composants, accessibilité, radius ≤ md.
 - **system-architect.md** — Stack, composants, contrats, SLOs, gouvernance ; pas d’implémentation.
+- **product-owner.md** — Themes / Epics / US, backlog, tâches agent-ready, recommandation modèle LLM.
+- **qa.md** — Stratégie de test, plans de test, CI, flaky, accessibilité, contract/perf/security.
+
+## Scripts et CI (hors .cursor)
+
+- **scripts/create_github_issue.py** : appelé par `.github/workflows/ci-qa-issue.yml` ; nécessite `requests` (voir `scripts/requirements.txt`).
+- Le workflow **ci-qa-issue** est déclenché par **« CI - Unit & Integration Tests »** ; ce workflow de tests doit exister et publier des artifacts.
 
 ## Conventions communes
 
