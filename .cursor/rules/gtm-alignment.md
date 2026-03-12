@@ -1,7 +1,7 @@
 ---
 name: "Rule — Go-To-Market (GTM) Alignment"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Ensure messaging, assets and outreach tactics are tightly aligned with product positioning (anti-VTR violation)."
 ---

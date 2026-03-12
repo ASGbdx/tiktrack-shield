@@ -1,7 +1,7 @@
 ---
 name: "Rule — Product Scope Control (Anti-Feature Creep)"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Enforce MVP boundaries: every feature must be classified as MVP | V2 | OutOfScope. OutOfScope requires justification + Product approval."
 ---

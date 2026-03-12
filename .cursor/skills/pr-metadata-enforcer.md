@@ -1,5 +1,5 @@
 # SKILL: PR Metadata Enforcer
-Short: Validate PR contains required TikTrack metadata and produce a checklist.
+Short: Validate PR contains required Guardlane metadata and produce a checklist.
 
 ## When to use
 On PR creation or reviewer checklist step.
@@ -22,7 +22,7 @@ On PR creation or reviewer checklist step.
 Input: PR missing `kpi_mapping`
 Output: Fail + snippet to paste:
 ```yaml
-PRODUCT_CONTEXT: TikTrack Shield
+PRODUCT_CONTEXT: Guardlane
 scope: MVP
 kpi_mapping: [activation]
 ```

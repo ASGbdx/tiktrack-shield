@@ -1,7 +1,7 @@
 ---
 name: "Rule — Architecture Boundaries"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Clear responsibility per layer to prevent leakage of concerns between frontend/backend/infra."
 ---

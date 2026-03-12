@@ -10,7 +10,7 @@ product_required: true
 ## Input
 - Minimal required:
   - `PRODUCT_CONTEXT` (must be present)
-  - `repo` (owner/repo e.g., `myorg/tiktrack-shield`)
+  - `repo` (owner/repo e.g., `myorg/guardlane`)
   - `title` (short descriptive title)
   - `severity` (critical | high | medium | low)
   - `description` (steps to reproduce, expected vs actual)
@@ -109,7 +109,7 @@ Invocation example (CI)
 ```bash
 export GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}"
 /run github-issue-logger \
-  --repo="myorg/tiktrack-shield" \
+  --repo="myorg/guardlane" \
   --title="Alert not triggered when only single scan exists" \
   --severity=high \
   --description="Steps...\n1. upload CSV ...\n2. run ingest...\nExpected: alert, Actual: no alert" \
@@ -121,7 +121,7 @@ export GITHUB_TOKEN="${{ secrets.GITHUB_TOKEN }}"
 ```bash
 curl -H "Authorization: token $GITHUB_TOKEN" \
      -H "Accept: application/vnd.github.v3+json" \
-     https://api.github.com/repos/myorg/tiktrack-shield/issues \
+     https://api.github.com/repos/myorg/guardlane/issues \
      -d '{
        "title":"[QA][high] Alert not triggered when only single scan exists",
        "body":"<issue body template filled>",
@@ -139,7 +139,7 @@ curl -H "Authorization: token $GITHUB_TOKEN" \
 ## Invocation
 - CLI / skill runner:
   ```bash
-  /run github-issue-logger --repo=myorg/tiktrack-shield --title="..." --severity=high --description="..." --artifacts='["..."]'
+  /run github-issue-logger --repo=myorg/guardlane --title="..." --severity=high --description="..." --artifacts='["..."]'
   ```
 - Recommended: integrate into CI (post-test step) to auto-log failures labeled `integration` or `regression`.
 

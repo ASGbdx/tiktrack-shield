@@ -1,7 +1,7 @@
 ---
 name: "Rule — Data Ingestion Standard"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Standard for ingestions (CSV, APIs). Versioned schemas, strict validation, clear error handling and fallback modes."
 ---

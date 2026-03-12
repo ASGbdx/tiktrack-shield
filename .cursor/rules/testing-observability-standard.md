@@ -1,7 +1,7 @@
 ---
 name: "Rule — Testing & Observability Standard"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Standardize tests and telemetry so alerting features can be validated. Every feature must include tests and metrics."
 ---

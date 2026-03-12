@@ -1,7 +1,7 @@
 ---
 name: "Rule — Accessibility Standard"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Exigences d'accessibilité pour l'UI : WCAG 2.1 AA, design tokens, focus, contraste. Toute livraison front/UX doit être vérifiable."
 ---
@@ -9,7 +9,7 @@ summary: "Exigences d'accessibilité pour l'UI : WCAG 2.1 AA, design tokens, foc
 # Accessibility Standard — Quick Rule
 
 **Purpose**  
-Garantir que l’interface TikTrack Shield est utilisable par tous (clavier, lecteurs d’écran, contraste, motion). Aligné avec l’agent UX et le design system.
+Garantir que l’interface Guardlane est utilisable par tous (clavier, lecteurs d’écran, contraste, motion). Aligné avec l’agent UX et le design system.
 
 ## Rule (must-follow)
 1. **Niveau cible** : WCAG 2.1 niveau AA pour l’UI (texte, formulaires, navigation, états).

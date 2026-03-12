@@ -1,7 +1,7 @@
 ---
 name: "Rule — Security & Data Ownership"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Define data classification, storage, access, retention and compliance for any data flow touching PII or business-sensitive data."
 ---

@@ -6,7 +6,7 @@ During frontend PR review, Storybook checks, or QA.
 
 ## Input
 - Component CSS/JSON snapshot or Storybook URL
-- `DESIGN_TOKENS.json` (canonical)
+- `DESIGN_TOKENS.json` (canonical, aligné sur le design system Guardlane — rule `design-system-guardlane.md`)
 
 ## Output
 - Report: pass/fail, mismatched tokens, recommended token replacements

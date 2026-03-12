@@ -1,18 +1,19 @@
-# TikTrack Shield — Cursor workspace
+# Guardlane — Cursor workspace
 
-Contexte produit, règles, skills et agents pour aligner l’IA sur le projet TikTrack Shield.
+Contexte produit, règles, skills et agents pour aligner l'IA sur le projet Guardlane.
 
 ## Structure
 
 | Dossier   | Rôle |
 |----------|------|
-| **rules/**  | Règles persistantes (scope, KPIs, ingestion, alertes, sécurité, GTM, etc.). Référence centrale : `tiktrack-shield.md`. |
+| **rules/**  | Règles persistantes (scope, KPIs, ingestion, alertes, sécurité, GTM, design). Référence centrale : `guardlane.md`. |
 | **skills/** | Skills procédurales : quand faire quoi, entrées/sorties, étapes, modes d’échec. À invoquer explicitement ou en CI. |
 | **agents/**  | Définitions de sous-agents (Backend, Frontend, DevOps, UX, System Architect) avec responsabilités et flux de travail. |
 
 ## Règles (rules/)
 
-- **tiktrack-shield.md** — Contexte produit, positionnement, MVP, KPIs, contraintes. À inclure (`PRODUCT_CONTEXT`, `scope`, `kpi_mapping`) dans tout livrable.
+- **guardlane.md** — Contexte produit, positionnement, MVP, KPIs, contraintes. À inclure (`PRODUCT_CONTEXT`, `scope`, `kpi_mapping`) dans tout livrable.
+- **design-system-guardlane.md** — Design system Guardlane (neutres surélevés, palette sémantique, typo, widget d’alerte).
 - **product-scope-control.md** — Scope `MVP | V2 | OutOfScope`, anti feature creep.
 - **kpi-driven-development.md** — Chaque livrable mappe à au moins un KPI.
 - **architecture-boundaries.md** — Frontend / Backend / DevOps / UX / Architect, pas de fuite de responsabilités.
@@ -59,6 +60,6 @@ Les skills sont dans des sous-dossiers : **back-dev/** , **front-dev/** , **devo
 
 ## Conventions communes
 
-- Inclure **PRODUCT_CONTEXT: TikTrack Shield** dans les livrables.
+- Inclure **PRODUCT_CONTEXT: Guardlane** dans les livrables.
 - Toujours renseigner **scope** (MVP / V2 / OutOfScope) et **kpi_mapping**.
 - Règles et skills peuvent référencer les métadonnées : `rule:`, `scope:`, `kpi_mapping:`, `data_flow`.

@@ -1,7 +1,7 @@
 ---
 name: "Rule — KPI-Driven Development"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Every deliverable must map to at least one product KPI. If none, justify its value."
 ---
@@ -9,7 +9,7 @@ summary: "Every deliverable must map to at least one product KPI. If none, justi
 # KPI-Driven Development — Quick Rule
 
 **Purpose**  
-Ensure engineering work moves metrics that matter for TikTrack Shield (activation, alert usefulness, retention, Good VTR days).
+Ensure engineering work moves metrics that matter for Guardlane (activation, alert usefulness, retention, Good VTR days).
 
 ## Rule (must-follow)
 1. Every artifact (PR, spec, mock, infra plan) must include `kpi_mapping`: one or more of:

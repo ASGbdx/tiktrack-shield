@@ -1,7 +1,7 @@
 ---
 name: "Rule — Alert Philosophy"
 version: "1.0"
-product: "TikTrack Shield"
+product: "Guardlane"
 updated: "2026-03-11"
 summary: "Rules that define what an alert is, when to send it, and what accompanying action must exist."
 ---

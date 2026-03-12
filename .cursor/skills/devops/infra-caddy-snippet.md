@@ -23,7 +23,7 @@ When provisioning routes for new services, or during PR review for ingress chang
 3. Provide testing checklist (how to validate).
 
 ## Examples
-Input: `service=api, domain=api.tiktrack.example.com`
+Input: `service=api, domain=api.guardlane.example.com`
 Output: Caddyfile with `reverse_proxy /api http://backend:8000` + security headers.
 
 ## Failure modes
@@ -31,4 +31,4 @@ Output: Caddyfile with `reverse_proxy /api http://backend:8000` + security heade
 - If Cloudflare in front → note `X-Forwarded-For` and `real ip` handling.
 
 ## Invocation
-`/run infra-caddy-snippet --service=api --domain=api.tiktrack.local --rate=100/m`
+`/run infra-caddy-snippet --service=api --domain=api.guardlane.local --rate=100/m`

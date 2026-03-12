@@ -4,7 +4,7 @@ scripts/create_github_issue.py
 
 Usage (example):
   python3 scripts/create_github_issue.py \
-    --repo myorg/tiktrack-shield \
+    --repo myorg/guardlane \
     --fingerprint <sha256> \
     --title "QA: CI test failures ..." \
     --severity high \
@@ -105,7 +105,7 @@ def main():
 
     # Compose issue body
     body_lines = [
-        f"PRODUCT_CONTEXT: {os.environ.get('PRODUCT_CONTEXT', 'TikTrack Shield')}",
+        f"PRODUCT_CONTEXT: {os.environ.get('PRODUCT_CONTEXT', 'Guardlane')}",
         f"Severity: {severity}",
         f"Fingerprint: {fingerprint}",
         "",

@@ -1,15 +1,15 @@
 ---
-name: "Rule — TikTrack Shield (product-context)"
-product: "TikTrack Shield"
+name: "Rule — Guardlane (product-context)"
+product: "Guardlane"
 version: "1.0"
-updated: "2026-03-11"
-summary: "Règle centrale et contexte produit pour tous les agents : positionnement, cible, MVP, KPIs, tone & constraints. Chaque agent doit inclure `PRODUCT_CONTEXT: TikTrack Shield` dans ses livrables et vérifier la conformité avec ces règles."
+updated: "2026-03-12"
+summary: "Règle centrale et contexte produit pour tous les agents : positionnement, cible, MVP, KPIs, tone & constraints. Chaque agent doit inclure `PRODUCT_CONTEXT: Guardlane` dans ses livrables et vérifier la conformité avec ces règles."
 ---
 
-# TIKTRACK SHIELD — PRODUCT RULE (quick reference)
+# GUARDLANE — PRODUCT RULE (quick reference)
 
 ## TL;DR (1 phrase)
-TikTrack Shield protège les sellers TikTok Shop des violations VTR en détectant les risques avant sanction et en fournissant alertes et recommandations actionnables.
+Guardlane protège les sellers TikTok Shop des violations VTR en détectant les risques avant sanction et en fournissant alertes et recommandations actionnables.
 
 ---
 
@@ -23,7 +23,7 @@ TikTrack Shield protège les sellers TikTok Shop des violations VTR en détectan
 ## Message obligatoire à inclure dans tout livrable
 Tous les agents doivent insérer clairement au début de leurs réponses/fichiers :
 
-PRODUCT_CONTEXT: TikTrack Shield — "Stopper les violations TikTok Shop avant qu’elles ne tuent ton shop."
+PRODUCT_CONTEXT: Guardlane — "Stopper les violations TikTok Shop avant qu’elles ne tuent ton shop."
 
 
 ---
@@ -103,7 +103,7 @@ PRODUCT_CONTEXT: TikTrack Shield — "Stopper les violations TikTok Shop avant q
 - [ ] Conforme au scope MVP (ou justification incluse).  
 - [ ] Assets nécessaires (mockups, API contract, CSV spec) fournis ou référencés.  
 - [ ] Respect des contraintes légales / privacy (données clients).  
-- [ ] Pour UI: respecter tokens/design system fournis par UX agent.  
+- [ ] Pour UI: respecter tokens/design system fournis par UX agent (voir `design-system-guardlane.md`).  
 - [ ] Pour infra: montrer plan de backups & sécurité pour données PII.  
 - [ ] Pour e2e/tests: provide test scenarios showing alert generation and action flows.
 
@@ -126,10 +126,10 @@ PRODUCT_CONTEXT: TikTrack Shield — "Stopper les violations TikTok Shop avant q
 ---
 
 ## How agents should reference this rule programmatically
-- Add header to outputs: `PRODUCT_CONTEXT: TikTrack Shield`
+- Add header to outputs: `PRODUCT_CONTEXT: Guardlane`
 - When producing artifacts, include metadata:
 ```yaml
-product: TikTrack Shield
+product: Guardlane
 artifact_type: <e.g., api-spec | ui-mock | infra-plan>
 kpi_mapping: <which KPI this artifact enables>
 scope: MVP | V2 | OutOfScope
